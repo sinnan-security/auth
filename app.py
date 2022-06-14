@@ -26,10 +26,9 @@ def micro_service(i):
 @app.route('/health', methods=['GET'])
 def health():
 	for i in config:
-		print(i)
 		if i.startswith('micro'):
-			print('%s_flag=micro_service(config["%s"])'%(i,i))
 			exec('%s_flag=micro_service(config["%s"])'%(i,i))
+	x=locals()
 	db=db_query(config['db'],'SELECT VERSION();')
 	return make_response(jsonify({
 		'service_auth':{
