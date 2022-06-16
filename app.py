@@ -49,8 +49,9 @@ def SomeFunctionality():
 @app.route('/api/auth/OtherRoute', methods=['POST'])
 def Otherfunctionality():
 	response={}
+	params = request.get_json(force=True)
 	logger(request,response)
-	return "<h1>Some Response!</H1>"
+	return make_response(jsonify(params),200)
 
 def logger(request,response):
 	tmp='headers:{'
